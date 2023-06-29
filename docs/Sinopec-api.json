@@ -1,302 +1,14 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/api/tileset/{tilesetId}/tilequery/{z}/{lon},{lat}.json": {
-      "get": {
-        "operationId": "queryTile",
-        "parameters": [
-          {
-            "name": "lon",
-            "required": true,
-            "in": "path",
-            "description": "经度",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "lat",
-            "required": true,
-            "in": "path",
-            "description": "纬度",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "z",
-            "required": true,
-            "in": "path",
-            "description": "缩放级别",
-            "example": "png",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "tilesetId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "TilesetController"
-        ]
-      }
-    },
-    "/api/tileset/{tilesetId}/wms": {
-      "get": {
-        "operationId": "getTileByWms",
-        "parameters": [
-          {
-            "name": "tilesetId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "TilesetController"
-        ]
-      }
-    },
-    "/api/tileset/{tilesetId}/tms/{z}/{x}/{y}{dpi}.{format}": {
-      "get": {
-        "operationId": "getTileByTms",
-        "parameters": [
-          {
-            "name": "x",
-            "required": true,
-            "in": "path",
-            "description": "x",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "y",
-            "required": true,
-            "in": "path",
-            "description": "y",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "z",
-            "required": true,
-            "in": "path",
-            "description": "z",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "format",
-            "required": true,
-            "in": "path",
-            "description": "tile 格式",
-            "example": "png",
-            "schema": {
-              "enum": [
-                "pbf",
-                "mvt",
-                "png",
-                "webp",
-                "jpg"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "name": "dpi",
-            "required": false,
-            "in": "path",
-            "example": "@2x",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tilesetId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "TilesetController"
-        ]
-      }
-    },
-    "/api/tileset/{tilesetId}/tile/{z}/{x}/{y}{dpi}.{format}": {
-      "get": {
-        "operationId": "getTile",
-        "parameters": [
-          {
-            "name": "x",
-            "required": true,
-            "in": "path",
-            "description": "x",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "y",
-            "required": true,
-            "in": "path",
-            "description": "y",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "z",
-            "required": true,
-            "in": "path",
-            "description": "z",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "format",
-            "required": true,
-            "in": "path",
-            "description": "tile 格式",
-            "example": "png",
-            "schema": {
-              "enum": [
-                "pbf",
-                "mvt",
-                "png",
-                "webp",
-                "jpg"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "name": "dpi",
-            "required": false,
-            "in": "path",
-            "example": "@2x",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tilesetId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "TilesetController"
-        ]
-      }
-    },
-    "/api/tileset": {
-      "post": {
-        "operationId": "create",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TilesetCreateOneInputDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "TilesetController"
-        ]
-      }
-    },
-    "/api/tileset/process": {
-      "post": {
-        "operationId": "process",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TilesetCreateOneInputDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "TilesetController"
-        ]
-      }
-    },
-    "/api/queue/ping": {
-      "get": {
-        "operationId": "ping",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "QueueController"
-        ]
-      }
-    },
-    "/api/dataset": {
+    "/tileset/{tilesetId}/tilequery/{z}/{lon},{lat}.json": {},
+    "/tileset/{tilesetId}/wms": {},
+    "/tileset/{tilesetId}/tms/{z}/{x}/{y}{dpi}.{format}": {},
+    "/tileset/{tilesetId}/tile/{z}/{x}/{y}{dpi}.{format}": {},
+    "/tileset": {},
+    "/tileset/process": {},
+    "/queue/ping": {},
+    "/dataset": {
       "post": {
         "operationId": "create",
         "summary": "创建dataset（支持从第三方数据库导入）",
@@ -324,7 +36,6 @@
           }
         },
         "tags": [
-          "DatasetController",
           "Sinopec"
         ]
       },
@@ -363,12 +74,11 @@
           }
         },
         "tags": [
-          "DatasetController",
           "Sinopec"
         ]
       }
     },
-    "/api/dataset/{datasetId}/info": {
+    "/dataset/{datasetId}/info": {
       "get": {
         "operationId": "getInfo",
         "parameters": [
@@ -394,12 +104,11 @@
           }
         },
         "tags": [
-          "DatasetController",
           "Sinopec"
         ]
       }
     },
-    "/api/dataset/{datasetId}/tilequery/{z}/{lon},{lat}.json": {
+    "/dataset/{datasetId}/tilequery/{z}/{lon},{lat}.json": {
       "get": {
         "operationId": "queryTile",
         "summary": "tilequery查询",
@@ -447,12 +156,11 @@
           }
         },
         "tags": [
-          "DatasetController",
           "Sinopec"
         ]
       }
     },
-    "/api/dataset/{datasetId}/{z}/{x}/{y}{dpi}.{format}": {
+    "/dataset/{datasetId}/{z}/{x}/{y}{dpi}.{format}": {
       "get": {
         "operationId": "getTile",
         "summary": "tile查询",
@@ -525,12 +233,11 @@
           }
         },
         "tags": [
-          "DatasetController",
           "Sinopec"
         ]
       }
     },
-    "/api/dataset/{datasetId}": {
+    "/dataset/{datasetId}": {
       "get": {
         "operationId": "getOne",
         "summary": "获取dataset",
@@ -557,7 +264,6 @@
           }
         },
         "tags": [
-          "DatasetController",
           "Sinopec"
         ]
       },
@@ -597,7 +303,6 @@
           }
         },
         "tags": [
-          "DatasetController",
           "Sinopec"
         ]
       },
@@ -620,12 +325,11 @@
           }
         },
         "tags": [
-          "DatasetController",
           "Sinopec"
         ]
       }
     },
-    "/api/feature/{datasetId}": {
+    "/feature/{datasetId}": {
       "post": {
         "operationId": "createOne",
         "summary": "创建feature",
@@ -662,7 +366,6 @@
           }
         },
         "tags": [
-          "FeatureController",
           "Sinopec"
         ]
       },
@@ -709,12 +412,11 @@
           }
         },
         "tags": [
-          "FeatureController",
           "Sinopec"
         ]
       }
     },
-    "/api/feature/{datasetId}/{id}": {
+    "/feature/{datasetId}/{id}": {
       "get": {
         "operationId": "getOne",
         "summary": "获取feature",
@@ -749,7 +451,6 @@
           }
         },
         "tags": [
-          "FeatureController",
           "Sinopec"
         ]
       },
@@ -787,7 +488,6 @@
           }
         },
         "tags": [
-          "FeatureController",
           "Sinopec"
         ]
       },
@@ -835,7 +535,6 @@
           }
         },
         "tags": [
-          "FeatureController",
           "Sinopec"
         ]
       }
@@ -1000,6 +699,11 @@
       "DatasetCreateInput": {
         "type": "object",
         "properties": {
+          "owner": {
+            "type": "string",
+            "description": "owner",
+            "example": "bigemap"
+          },
           "name": {
             "type": "string",
             "description": "dataset名称",
@@ -1024,9 +728,6 @@
                 "$ref": "#/components/schemas/Symbols"
               }
             ]
-          },
-          "owner": {
-            "type": "string"
           },
           "bounds": {
             "type": "array",
@@ -1116,6 +817,11 @@
       "DatasetUpdateInput": {
         "type": "object",
         "properties": {
+          "owner": {
+            "type": "string",
+            "description": "owner",
+            "example": "bigemap"
+          },
           "name": {
             "type": "string",
             "description": "dataset名称",
@@ -1140,9 +846,6 @@
                 "$ref": "#/components/schemas/Symbols"
               }
             ]
-          },
-          "owner": {
-            "type": "string"
           },
           "bounds": {
             "type": "array",
