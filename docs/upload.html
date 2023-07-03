@@ -21,19 +21,9 @@
       crossorigin
     ></script>
     <script type="module">
-      import { url } from "./url.js";
       window.onload = () => {
         window.ui = SwaggerUIBundle({
-          urls: [
-            { url: url, name: "api" },
-            {
-              url: "https://raw.githubusercontent.com/tus/tus-resumable-upload-protocol/master/OpenAPI/openapi3.yaml",
-              name: "upload-file",
-            },
-          ],
-          ["urls.primaryName"]: "api",
-          presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
-          layout: "StandaloneLayout",
+          url: "https://raw.githubusercontent.com/tus/tus-resumable-upload-protocol/master/OpenAPI/openapi3.yaml",
           dom_id: "#swagger-ui",
         });
       };

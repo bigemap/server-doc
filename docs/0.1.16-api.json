@@ -2,12 +2,248 @@
   "openapi": "3.0.0",
   "paths": {
     "/tileset/{tilesetId}/tilequery/{z}/{lon},{lat}.json": {},
-    "/tileset/{tilesetId}/wms": {},
-    "/tileset/{tilesetId}/tms/{z}/{x}/{y}{dpi}.{format}": {},
-    "/tileset/{tilesetId}/tile/{z}/{x}/{y}{dpi}.{format}": {},
-    "/tileset": {},
-    "/tileset/process": {},
-    "/queue/ping": {},
+    "/tileset/{tilesetId}/wms": {
+      "get": {
+        "operationId": "getTileByWms",
+        "parameters": [
+          {
+            "name": "tilesetId",
+            "required": true,
+            "in": "path",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "TilesetController"
+        ]
+      }
+    },
+    "/tileset/{tilesetId}/tms/{z}/{x}/{y}{dpi}.{format}": {
+      "get": {
+        "operationId": "getTileByTms",
+        "parameters": [
+          {
+            "name": "x",
+            "required": true,
+            "in": "path",
+            "description": "x",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "y",
+            "required": true,
+            "in": "path",
+            "description": "y",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "z",
+            "required": true,
+            "in": "path",
+            "description": "z",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "format",
+            "required": true,
+            "in": "path",
+            "description": "tile 格式",
+            "example": "png",
+            "schema": {
+              "enum": [
+                "pbf",
+                "mvt",
+                "png",
+                "webp",
+                "jpg"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "dpi",
+            "required": false,
+            "in": "path",
+            "example": "@2x",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tilesetId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "TilesetController"
+        ]
+      }
+    },
+    "/tileset/{tilesetId}/tile/{z}/{x}/{y}{dpi}.{format}": {
+      "get": {
+        "operationId": "getTile",
+        "parameters": [
+          {
+            "name": "x",
+            "required": true,
+            "in": "path",
+            "description": "x",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "y",
+            "required": true,
+            "in": "path",
+            "description": "y",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "z",
+            "required": true,
+            "in": "path",
+            "description": "z",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "format",
+            "required": true,
+            "in": "path",
+            "description": "tile 格式",
+            "example": "png",
+            "schema": {
+              "enum": [
+                "pbf",
+                "mvt",
+                "png",
+                "webp",
+                "jpg"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "dpi",
+            "required": false,
+            "in": "path",
+            "example": "@2x",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tilesetId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "TilesetController"
+        ]
+      }
+    },
+    "/tileset": {
+      "post": {
+        "operationId": "create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TilesetCreateOneInputDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "TilesetController"
+        ]
+      }
+    },
+    "/tileset/process": {
+      "post": {
+        "operationId": "process",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TilesetCreateOneInputDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "TilesetController"
+        ]
+      }
+    },
+    "/queue/ping": {
+      "get": {
+        "operationId": "ping",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "QueueController"
+        ]
+      }
+    },
     "/dataset": {
       "post": {
         "operationId": "create",
@@ -36,6 +272,7 @@
           }
         },
         "tags": [
+          "DatasetController",
           "Sinopec"
         ]
       },
@@ -74,6 +311,7 @@
           }
         },
         "tags": [
+          "DatasetController",
           "Sinopec"
         ]
       }
@@ -104,6 +342,7 @@
           }
         },
         "tags": [
+          "DatasetController",
           "Sinopec"
         ]
       }
@@ -156,6 +395,7 @@
           }
         },
         "tags": [
+          "DatasetController",
           "Sinopec"
         ]
       }
@@ -233,6 +473,7 @@
           }
         },
         "tags": [
+          "DatasetController",
           "Sinopec"
         ]
       }
@@ -264,6 +505,7 @@
           }
         },
         "tags": [
+          "DatasetController",
           "Sinopec"
         ]
       },
@@ -303,6 +545,7 @@
           }
         },
         "tags": [
+          "DatasetController",
           "Sinopec"
         ]
       },
@@ -325,6 +568,7 @@
           }
         },
         "tags": [
+          "DatasetController",
           "Sinopec"
         ]
       }
@@ -366,6 +610,7 @@
           }
         },
         "tags": [
+          "FeatureController",
           "Sinopec"
         ]
       },
@@ -412,6 +657,7 @@
           }
         },
         "tags": [
+          "FeatureController",
           "Sinopec"
         ]
       }
@@ -451,6 +697,7 @@
           }
         },
         "tags": [
+          "FeatureController",
           "Sinopec"
         ]
       },
@@ -488,6 +735,7 @@
           }
         },
         "tags": [
+          "FeatureController",
           "Sinopec"
         ]
       },
@@ -535,6 +783,7 @@
           }
         },
         "tags": [
+          "FeatureController",
           "Sinopec"
         ]
       }

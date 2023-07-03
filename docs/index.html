@@ -26,12 +26,6 @@
           <div class="mt-8 max-w-md">
             <div class="grid grid-cols-1 gap-6">
               <label class="block">
-                <span class="text-gray-700">客户端</span>
-                <select class="block w-full mt-1" v-model="selectedClient">
-                  <option v-for="item in clientKeys">{{ item }}</option>
-                </select>
-              </label>
-              <label class="block">
                 <span class="text-gray-700">版本</span>
                 <select class="block w-full mt-1" v-model="selectedVersion">
                   <option v-for="item in versions">{{ item }}</option>
@@ -61,24 +55,18 @@
 
   <script type="module">
     import { createApp, ref } from "vue";
-    import metadata from "./docs/metadata.json" assert { type: "json" };
-    const clients = metadata.clients;
-    const clientKeys = Object.keys(clients);
-    const versions = clients;
+    import metadata from "./metadata.json" assert { type: "json" };
     createApp({
       setup() {
-        const selectedClient = ref("bigemap");
-        const versions = ["latest", ...clients[selectedClient.value].versions];
+        const versions = ["latest", ...metadata.versions];
         const selectedVersion = ref("latest");
         const selectedUi = ref("swagger");
         const handleClick = ref(() => {
           window.open(
-            `./${selectedUi.value}.html?version=${selectedVersion.value}&client=${selectedClient.value}`
+            `./${selectedUi.value}.html?version=${selectedVersion.value}`
           );
         });
         return {
-          clientKeys,
-          selectedClient,
           versions: versions,
           selectedVersion,
           ui: metadata.ui,

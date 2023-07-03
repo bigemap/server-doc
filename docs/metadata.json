@@ -1,13 +1,14 @@
 {
-  "ui": ["swagger", "redoc"],
-  "clients": {
-    "bigemap": {
-      "versions": [],
-      "checksum": "837d5a0f6e93a796ee7c7f8097273755"
-    },
-    "Sinopec": {
-      "versions": [],
-      "checksum": "bf88899a22f4ed1e8179bfa071139ee4"
-    }
-  }
+  "ui": [
+    "swagger",
+    "redoc"
+  ],
+  "clients": [
+    "bigemap",
+    "Sinopec"
+  ],
+  "versions": [
+    "0.1.16"
+  ],
+  "checksum": "837d5a0f6e93a796ee7c7f8097273755"
 }
