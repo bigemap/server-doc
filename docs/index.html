@@ -54,26 +54,24 @@
   </body>
 
   <script type="module">
-    import { createApp, ref } from "vue";
-    import metadata from "./metadata.json" assert { type: "json" };
+    import { createApp, ref } from 'vue'
+    import metadata from './json-file/metadata.json' assert { type: 'json' }
     createApp({
       setup() {
-        const versions = ["latest", ...metadata.versions];
-        const selectedVersion = ref("latest");
-        const selectedUi = ref("swagger");
+        const versions = ['latest', ...metadata.versions]
+        const selectedVersion = ref('latest')
+        const selectedUi = ref('swagger')
         const handleClick = ref(() => {
-          window.open(
-            `./${selectedUi.value}.html?version=${selectedVersion.value}`
-          );
-        });
+          window.open(`./${selectedUi.value}.html?version=${selectedVersion.value}`)
+        })
         return {
           versions: versions,
           selectedVersion,
           ui: metadata.ui,
           selectedUi,
           handleClick,
-        };
+        }
       },
-    }).mount("#app");
+    }).mount('#app')
   </script>
 </html>

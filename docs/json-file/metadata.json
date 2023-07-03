@@ -8,7 +8,8 @@
     "Sinopec"
   ],
   "versions": [
-    "0.1.16"
+    "0.1.16",
+    "0.1.18"
   ],
-  "checksum": "837d5a0f6e93a796ee7c7f8097273755"
+  "checksum": "75b9ee33feb50c5d50f5ba003fb3098c"
 }

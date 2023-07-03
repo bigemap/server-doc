@@ -1,10 +1,6 @@
-const params = new URLSearchParams(window.location.search);
-const version = params.get("version") || "latest";
-// const client = params.get("client") || "bigemap";
+const params = new URLSearchParams(window.location.search)
+const version = params.get('version') || 'latest'
 
-export const url = [
-  ".",
-  version === "latest" ? "api.json" : `${version}-api.json`,
-]
+export const url = ['./json-file', version === 'latest' ? 'api.json' : `${version}-api.json`]
   .filter((item) => !!item)
-  .join("/");
+  .join('/')
