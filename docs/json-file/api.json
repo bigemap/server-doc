@@ -3,7 +3,7 @@
   "paths": {
     "/api/tileset/{tilesetId}/tilequery/{z}/{lon},{lat}.json": {
       "get": {
-        "operationId": "queryTile",
+        "operationId": "TilesetController_queryTile",
         "parameters": [
           {
             "name": "lon",
@@ -32,14 +32,6 @@
             "schema": {
               "type": "number"
             }
-          },
-          {
-            "name": "tilesetId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -54,7 +46,7 @@
     },
     "/api/tileset/{tilesetId}/wms": {
       "get": {
-        "operationId": "getTileByWms",
+        "operationId": "TilesetController_getTileByWms",
         "parameters": [
           {
             "name": "tilesetId",
@@ -77,7 +69,7 @@
     },
     "/api/tileset/{tilesetId}/tms/{z}/{x}/{y}{dpi}.{format}": {
       "get": {
-        "operationId": "getTileByTms",
+        "operationId": "TilesetController_getTileByTms",
         "parameters": [
           {
             "name": "x",
@@ -113,29 +105,14 @@
             "description": "tile 格式",
             "example": "png",
             "schema": {
-              "enum": [
-                "pbf",
-                "mvt",
-                "png",
-                "webp",
-                "jpg"
-              ],
               "type": "string"
             }
           },
           {
             "name": "dpi",
-            "required": false,
-            "in": "path",
-            "example": "@2x",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tilesetId",
             "required": true,
             "in": "path",
+            "example": "@2x",
             "schema": {
               "type": "string"
             }
@@ -153,7 +130,7 @@
     },
     "/api/tileset/{tilesetId}/tile/{z}/{x}/{y}{dpi}.{format}": {
       "get": {
-        "operationId": "getTile",
+        "operationId": "TilesetController_getTile",
         "parameters": [
           {
             "name": "x",
@@ -189,29 +166,14 @@
             "description": "tile 格式",
             "example": "png",
             "schema": {
-              "enum": [
-                "pbf",
-                "mvt",
-                "png",
-                "webp",
-                "jpg"
-              ],
               "type": "string"
             }
           },
           {
             "name": "dpi",
-            "required": false,
-            "in": "path",
-            "example": "@2x",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tilesetId",
             "required": true,
             "in": "path",
+            "example": "@2x",
             "schema": {
               "type": "string"
             }
@@ -229,7 +191,7 @@
     },
     "/api/tileset": {
       "post": {
-        "operationId": "create",
+        "operationId": "TilesetController_create",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -243,14 +205,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -260,7 +215,7 @@
     },
     "/api/tileset/process": {
       "post": {
-        "operationId": "process",
+        "operationId": "TilesetController_process",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -284,7 +239,7 @@
     },
     "/api/queue/ping": {
       "get": {
-        "operationId": "ping",
+        "operationId": "QueueController_ping",
         "parameters": [],
         "responses": {
           "200": {
@@ -298,7 +253,7 @@
     },
     "/api/dataset": {
       "post": {
-        "operationId": "create",
+        "operationId": "DatasetController_create",
         "summary": "创建dataset（支持从第三方数据库导入）",
         "parameters": [],
         "requestBody": {
@@ -313,14 +268,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Dataset"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -329,7 +277,7 @@
         ]
       },
       "get": {
-        "operationId": "getAll",
+        "operationId": "DatasetController_getAll",
         "summary": "获取dataset列表",
         "parameters": [
           {
@@ -370,7 +318,7 @@
     },
     "/api/dataset/{datasetId}/info": {
       "get": {
-        "operationId": "getInfo",
+        "operationId": "DatasetController_getInfo",
         "parameters": [
           {
             "name": "datasetId",
@@ -383,14 +331,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -401,7 +342,7 @@
     },
     "/api/dataset/{datasetId}/tilequery/{z}/{lon},{lat}.json": {
       "get": {
-        "operationId": "queryTile",
+        "operationId": "DatasetController_queryTile",
         "summary": "tilequery查询",
         "parameters": [
           {
@@ -454,7 +395,7 @@
     },
     "/api/dataset/{datasetId}/{z}/{x}/{y}{dpi}.{format}": {
       "get": {
-        "operationId": "getTile",
+        "operationId": "DatasetController_getTile",
         "summary": "tile查询",
         "parameters": [
           {
@@ -499,19 +440,12 @@
             "description": "tile 格式",
             "example": "png",
             "schema": {
-              "enum": [
-                "pbf",
-                "mvt",
-                "png",
-                "webp",
-                "jpg"
-              ],
               "type": "string"
             }
           },
           {
             "name": "dpi",
-            "required": false,
+            "required": true,
             "in": "path",
             "example": "@2x",
             "schema": {
@@ -532,7 +466,7 @@
     },
     "/api/dataset/{datasetId}": {
       "get": {
-        "operationId": "getOne",
+        "operationId": "DatasetController_getOne",
         "summary": "获取dataset",
         "parameters": [
           {
@@ -546,14 +480,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Dataset"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -562,7 +489,7 @@
         ]
       },
       "patch": {
-        "operationId": "patch",
+        "operationId": "DatasetController_patch",
         "summary": "修改dataset",
         "parameters": [
           {
@@ -586,14 +513,7 @@
         },
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Dataset"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -602,7 +522,7 @@
         ]
       },
       "delete": {
-        "operationId": "del",
+        "operationId": "DatasetController_del",
         "summary": "删除dataset",
         "parameters": [
           {
@@ -627,7 +547,7 @@
     },
     "/api/feature/{datasetId}": {
       "post": {
-        "operationId": "createOne",
+        "operationId": "FeatureController_createOne",
         "summary": "创建feature",
         "parameters": [
           {
@@ -651,14 +571,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -667,7 +580,7 @@
         ]
       },
       "get": {
-        "operationId": "getAll",
+        "operationId": "FeatureController_getAll",
         "summary": "获取feature列表",
         "parameters": [
           {
@@ -716,7 +629,7 @@
     },
     "/api/feature/{datasetId}/{id}": {
       "get": {
-        "operationId": "getOne",
+        "operationId": "FeatureController_getOne",
         "summary": "获取feature",
         "parameters": [
           {
@@ -738,14 +651,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Feature"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -754,7 +660,7 @@
         ]
       },
       "delete": {
-        "operationId": "deleteOne",
+        "operationId": "FeatureController_deleteOne",
         "summary": "删除feature",
         "parameters": [
           {
@@ -776,14 +682,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -792,7 +691,7 @@
         ]
       },
       "patch": {
-        "operationId": "patch",
+        "operationId": "FeatureController_patch",
         "summary": "修改feature",
         "parameters": [
           {
@@ -824,14 +723,7 @@
         },
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -853,41 +745,11 @@
     "schemas": {
       "TilesetCreateOneInputDTO": {
         "type": "object",
-        "properties": {
-          "filePath": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "filePath"
-        ]
+        "properties": {}
       },
       "DatasetCreateConnection": {
         "type": "object",
-        "properties": {
-          "host": {
-            "type": "string"
-          },
-          "port": {
-            "type": "number"
-          },
-          "username": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "database": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "host",
-          "port",
-          "username",
-          "password",
-          "database"
-        ]
+        "properties": {}
       },
       "CreateFrom": {
         "type": "object",
@@ -908,10 +770,6 @@
             ]
           },
           "driver": {
-            "enum": [
-              "mysql",
-              "pg"
-            ],
             "type": "string",
             "description": "第三方数据库驱动类型",
             "example": "mysql"
@@ -946,23 +804,6 @@
           "latField"
         ]
       },
-      "SymbolRule": {
-        "type": "object",
-        "properties": {
-          "filter": {
-            "type": "string",
-            "description": "条件"
-          },
-          "icon": {
-            "type": "string",
-            "description": "icon的url(相对路径)"
-          }
-        },
-        "required": [
-          "filter",
-          "icon"
-        ]
-      },
       "Symbols": {
         "type": "object",
         "properties": {
@@ -989,7 +830,7 @@
             ],
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/SymbolRule"
+              "type": "string"
             }
           }
         },
@@ -1030,17 +871,15 @@
                 "$ref": "#/components/schemas/Symbols"
               }
             ]
-          },
-          "bounds": {
-            "type": "array",
-            "items": {
-              "type": "number"
-            }
-          },
-          "features": {
-            "type": "number"
           }
-        }
+        },
+        "required": [
+          "owner",
+          "name",
+          "description",
+          "createFrom",
+          "symbols"
+        ]
       },
       "Dataset": {
         "type": "object",
@@ -1061,39 +900,12 @@
           "deletedAt": {
             "format": "date-time",
             "type": "string"
-          },
-          "owner": {
-            "type": "string"
-          },
-          "bounds": {
-            "type": "array",
-            "items": {
-              "type": "number"
-            }
-          },
-          "features": {
-            "type": "number"
-          },
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "thirdPartDataSourceUniqueKey": {
-            "type": "string"
-          },
-          "symbols": {
-            "$ref": "#/components/schemas/Symbols"
           }
         },
         "required": [
           "id",
           "createdAt",
-          "updatedAt",
-          "owner",
-          "bounds",
-          "features"
+          "updatedAt"
         ]
       },
       "DatasetPaginatedResult": {
@@ -1148,15 +960,6 @@
                 "$ref": "#/components/schemas/Symbols"
               }
             ]
-          },
-          "bounds": {
-            "type": "array",
-            "items": {
-              "type": "number"
-            }
-          },
-          "features": {
-            "type": "number"
           }
         }
       },
@@ -1165,9 +968,6 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "Point"
-            ],
             "description": "GeometryType",
             "default": "Point"
           },
@@ -1179,7 +979,7 @@
             ],
             "type": "array",
             "items": {
-              "type": "number"
+              "type": "string"
             }
           }
         },
@@ -1193,9 +993,6 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "Feature"
-            ],
             "description": "ElementType",
             "default": "Feature"
           },
@@ -1242,9 +1039,6 @@
           },
           "type": {
             "type": "string",
-            "enum": [
-              "Feature"
-            ],
             "description": "ElementType",
             "default": "Feature"
           },
@@ -1273,7 +1067,8 @@
           "updatedAt",
           "type",
           "geometry",
-          "properties"
+          "properties",
+          "thirdPartDataSourcePrimaryKey"
         ]
       },
       "FeaturePaginatedResult": {
@@ -1301,9 +1096,6 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "Feature"
-            ],
             "description": "ElementType",
             "default": "Feature"
           },
