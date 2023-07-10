@@ -813,18 +813,18 @@
             "example": "/path/to/file"
           },
           "rules": {
-            "description": "按规则展示icon,支持正则,更多rule规则: https://github.com/mapnik/mapnik/wiki/Filter",
+            "description": "按规则展示icon",
             "example": [
               {
-                "filter": "[status].match('1')",
+                "filter": "status = '1'",
                 "icon": "/path/to/file"
               },
               {
-                "filter": "[status] &gt;= '2'",
+                "filter": "status = '2'",
                 "icon": "/path/to/file"
               },
               {
-                "filter": "[status] = '3'",
+                "filter": "status = '3'",
                 "icon": "/path/to/file"
               }
             ],
