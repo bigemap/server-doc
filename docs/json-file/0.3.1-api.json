@@ -110,7 +110,7 @@
           },
           {
             "name": "dpi",
-            "required": false,
+            "required": true,
             "in": "path",
             "example": "@2x",
             "schema": {
@@ -171,7 +171,7 @@
           },
           {
             "name": "dpi",
-            "required": false,
+            "required": true,
             "in": "path",
             "example": "@2x",
             "schema": {
@@ -445,7 +445,7 @@
           },
           {
             "name": "dpi",
-            "required": false,
+            "required": true,
             "in": "path",
             "example": "@2x",
             "schema": {
@@ -731,51 +731,6 @@
           "Sinopec"
         ]
       }
-    },
-    "/api/feature/{datasetId}/get-by-geometry": {
-      "post": {
-        "operationId": "FeatureController_getAllByGeometry",
-        "summary": "获取多边形范围内的feature列表",
-        "parameters": [
-          {
-            "name": "datasetId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetFeatureByGeometryInput"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Feature"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "FeatureController",
-          "Sinopec"
-        ]
-      }
     }
   },
   "info": {
@@ -849,23 +804,6 @@
           "latField"
         ]
       },
-      "SymbolRule": {
-        "type": "object",
-        "properties": {
-          "filter": {
-            "type": "string",
-            "description": "按规则展示icon(支持正则),更多filter规则: https://github.com/mapnik/mapnik/wiki/Filter"
-          },
-          "icon": {
-            "type": "string",
-            "description": "icon的url(相对路径)"
-          }
-        },
-        "required": [
-          "filter",
-          "icon"
-        ]
-      },
       "Symbols": {
         "type": "object",
         "properties": {
@@ -892,7 +830,7 @@
             ],
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/SymbolRule"
+              "type": "string"
             }
           }
         },
@@ -934,7 +872,14 @@
               }
             ]
           }
-        }
+        },
+        "required": [
+          "owner",
+          "name",
+          "description",
+          "createFrom",
+          "symbols"
+        ]
       },
       "Dataset": {
         "type": "object",
@@ -1024,10 +969,6 @@
           "type": {
             "type": "string",
             "description": "GeometryType",
-            "enum": [
-              "Point",
-              "Polygon"
-            ],
             "default": "Point"
           },
           "coordinates": {
@@ -1038,7 +979,7 @@
             ],
             "type": "array",
             "items": {
-              "type": "number"
+              "type": "string"
             }
           }
         },
@@ -1053,9 +994,6 @@
           "type": {
             "type": "string",
             "description": "ElementType",
-            "enum": [
-              "Feature"
-            ],
             "default": "Feature"
           },
           "geometry": {
@@ -1102,9 +1040,6 @@
           "type": {
             "type": "string",
             "description": "ElementType",
-            "enum": [
-              "Feature"
-            ],
             "default": "Feature"
           },
           "geometry": {
@@ -1156,81 +1091,12 @@
           "result"
         ]
       },
-      "PolygonGeometry": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "default": "Polygon",
-            "enum": [
-              "Point",
-              "Polygon"
-            ]
-          },
-          "coordinates": {
-            "items": {
-              "type": "array"
-            },
-            "type": "array"
-          }
-        },
-        "required": [
-          "type",
-          "coordinates"
-        ]
-      },
-      "GetFeatureByGeometryInput": {
-        "type": "object",
-        "properties": {
-          "geometry": {
-            "example": {
-              "type": "Polygon",
-              "coordinates": [
-                [
-                  [
-                    103.2,
-                    34
-                  ],
-                  [
-                    103.4,
-                    34
-                  ],
-                  [
-                    103.4,
-                    35
-                  ],
-                  [
-                    103.2,
-                    35
-                  ],
-                  [
-                    103.2,
-                    34
-                  ]
-                ]
-              ]
-            },
-            "description": "符合GeoJSON协议的Polygon(https://datatracker.ietf.org/doc/html/rfc7946#appendix-A.3)",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PolygonGeometry"
-              }
-            ]
-          }
-        },
-        "required": [
-          "geometry"
-        ]
-      },
       "FeatureUpdateInput": {
         "type": "object",
         "properties": {
           "type": {
             "type": "string",
             "description": "ElementType",
-            "enum": [
-              "Feature"
-            ],
             "default": "Feature"
           },
           "geometry": {
