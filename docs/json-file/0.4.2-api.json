@@ -312,16 +312,6 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Dataset"
-                }
-              }
-            }
-          },
           "201": {
             "description": "",
             "content": {
@@ -660,16 +650,6 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Feature"
-                }
-              }
-            }
-          },
           "201": {
             "description": "",
             "content": {
@@ -848,7 +828,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Feature"
+                  "type": "object"
                 }
               }
             }
@@ -1136,27 +1116,42 @@
             "type": "string",
             "description": "更新时间"
           },
+          "deletedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "bounds": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "features": {
+            "type": "number"
+          },
           "name": {
-            "type": "string",
-            "description": "名称"
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": "描述"
+            "type": "string"
+          },
+          "thirdPartDataSourceUniqueKey": {
+            "type": "string"
           },
           "symbols": {
-            "description": "按照配置的图标和规则渲染",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Symbols"
-              }
-            ]
+            "$ref": "#/components/schemas/Symbols"
           }
         },
         "required": [
           "id",
           "createdAt",
-          "updatedAt"
+          "updatedAt",
+          "owner",
+          "bounds",
+          "features"
         ]
       },
       "DatasetPaginatedResult": {
@@ -1260,11 +1255,11 @@
             "enum": [
               "Feature"
             ],
-            "description": "ElementType,",
+            "description": "ElementType",
             "default": "Feature"
           },
           "geometry": {
-            "description": "GeometryType,符合GEOJSON定义的Geometry Object, https://datatracker.ietf.org/doc/html/rfc7946#section-3.1",
+            "description": "GeometryType",
             "default": "Point",
             "allOf": [
               {
@@ -1300,16 +1295,20 @@
             "type": "string",
             "description": "更新时间"
           },
+          "deletedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
           "type": {
             "type": "string",
             "enum": [
               "Feature"
             ],
-            "description": "ElementType,",
+            "description": "ElementType",
             "default": "Feature"
           },
           "geometry": {
-            "description": "GeometryType,符合GEOJSON定义的Geometry Object, https://datatracker.ietf.org/doc/html/rfc7946#section-3.1",
+            "description": "GeometryType",
             "default": "Point",
             "allOf": [
               {
@@ -1410,7 +1409,7 @@
                 ]
               ]
             },
-            "description": "符合GeoJSON协议的Polygon (https://datatracker.ietf.org/doc/html/rfc7946#appendix-A.3)",
+            "description": "符合GeoJSON协议的Polygon(https://datatracker.ietf.org/doc/html/rfc7946#appendix-A.3)",
             "allOf": [
               {
                 "$ref": "#/components/schemas/PolygonGeometry"
@@ -1430,11 +1429,11 @@
             "enum": [
               "Feature"
             ],
-            "description": "ElementType,",
+            "description": "ElementType",
             "default": "Feature"
           },
           "geometry": {
-            "description": "GeometryType,符合GEOJSON定义的Geometry Object, https://datatracker.ietf.org/doc/html/rfc7946#section-3.1",
+            "description": "GeometryType",
             "default": "Point",
             "allOf": [
               {
