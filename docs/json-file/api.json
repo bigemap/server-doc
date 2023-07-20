@@ -4,6 +4,8 @@
     "/api/tileset/{tilesetId}/tilequery/{z}/{lon},{lat}.json": {
       "get": {
         "operationId": "TilesetController_queryTile",
+        "summary": "",
+        "description": "",
         "parameters": [
           {
             "name": "lon",
@@ -55,6 +57,8 @@
     "/api/tileset/{tilesetId}/wms": {
       "get": {
         "operationId": "TilesetController_getTileByWms",
+        "summary": "",
+        "description": "",
         "parameters": [
           {
             "name": "tilesetId",
@@ -78,6 +82,8 @@
     "/api/tileset/{tilesetId}/tms/{z}/{x}/{y}{dpi}.{format}": {
       "get": {
         "operationId": "TilesetController_getTileByTms",
+        "summary": "",
+        "description": "",
         "parameters": [
           {
             "name": "x",
@@ -154,6 +160,8 @@
     "/api/tileset/{tilesetId}/tile/{z}/{x}/{y}{dpi}.{format}": {
       "get": {
         "operationId": "TilesetController_getTile",
+        "summary": "",
+        "description": "",
         "parameters": [
           {
             "name": "x",
@@ -230,6 +238,8 @@
     "/api/tileset": {
       "post": {
         "operationId": "TilesetController_create",
+        "summary": "",
+        "description": "",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -261,6 +271,8 @@
     "/api/tileset/process": {
       "post": {
         "operationId": "TilesetController_process",
+        "summary": "",
+        "description": "",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -285,6 +297,8 @@
     "/api/queue/ping": {
       "get": {
         "operationId": "QueueController_ping",
+        "summary": "",
+        "description": "",
         "parameters": [],
         "responses": {
           "200": {
@@ -299,7 +313,8 @@
     "/api/dataset": {
       "post": {
         "operationId": "DatasetController_create",
-        "summary": "创建dataset（支持从第三方数据库导入）",
+        "summary": "创建dataset（支持第三方数据库连接）",
+        "description": "",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -341,6 +356,7 @@
       "get": {
         "operationId": "DatasetController_getAll",
         "summary": "获取dataset列表",
+        "description": "",
         "parameters": [
           {
             "name": "skip",
@@ -381,6 +397,8 @@
     "/api/dataset/{datasetId}/info": {
       "get": {
         "operationId": "DatasetController_getInfo",
+        "summary": "",
+        "description": "",
         "parameters": [
           {
             "name": "datasetId",
@@ -413,6 +431,7 @@
       "get": {
         "operationId": "DatasetController_queryTile",
         "summary": "tilequery查询",
+        "description": "",
         "parameters": [
           {
             "name": "datasetId",
@@ -466,6 +485,7 @@
       "get": {
         "operationId": "DatasetController_getTile",
         "summary": "tile查询",
+        "description": "",
         "parameters": [
           {
             "name": "datasetId",
@@ -527,6 +547,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "filter",
+            "required": false,
+            "in": "query",
+            "description": "根据规则过滤图层, 会在symbols的filter规则之上做叠加,规则语法请参考 https://github.com/mapnik/mapnik/wiki/Filter,因为参数是作为query传递的因此需要转码（encodeURIComponent）",
+            "example": "[row] &gt;= 16 and [col] &gt;= 10 and [project] &gt;= 14",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -544,6 +574,7 @@
       "get": {
         "operationId": "DatasetController_getOne",
         "summary": "获取dataset",
+        "description": "",
         "parameters": [
           {
             "name": "datasetId",
@@ -574,6 +605,7 @@
       "patch": {
         "operationId": "DatasetController_patch",
         "summary": "修改dataset",
+        "description": "",
         "parameters": [
           {
             "name": "datasetId",
@@ -614,6 +646,7 @@
       "delete": {
         "operationId": "DatasetController_del",
         "summary": "删除dataset",
+        "description": "",
         "parameters": [
           {
             "name": "datasetId",
@@ -635,10 +668,55 @@
         ]
       }
     },
+    "/api/dataset/upload": {
+      "post": {
+        "operationId": "DatasetController_uploadFile",
+        "summary": "上传图标，大小限制为10MB",
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/FileUploadInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileUploadResponse"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "DatasetController",
+          "Sinopec"
+        ]
+      }
+    },
     "/api/feature/{datasetId}": {
       "post": {
         "operationId": "FeatureController_createOne",
         "summary": "创建feature",
+        "description": "",
         "parameters": [
           {
             "name": "datasetId",
@@ -689,6 +767,7 @@
       "get": {
         "operationId": "FeatureController_getAll",
         "summary": "获取feature列表",
+        "description": "",
         "parameters": [
           {
             "name": "datasetId",
@@ -738,6 +817,7 @@
       "get": {
         "operationId": "FeatureController_getOne",
         "summary": "获取feature",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -776,6 +856,7 @@
       "delete": {
         "operationId": "FeatureController_deleteOne",
         "summary": "删除feature",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -814,6 +895,7 @@
       "patch": {
         "operationId": "FeatureController_patch",
         "summary": "修改feature",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -864,6 +946,7 @@
       "post": {
         "operationId": "FeatureController_getAllByGeometry",
         "summary": "获取多边形范围内的feature列表",
+        "description": "",
         "parameters": [
           {
             "name": "datasetId",
@@ -940,7 +1023,7 @@
           "filePath"
         ]
       },
-      "DatasetCreateConnection": {
+      "CustomDataSourceConnection": {
         "type": "object",
         "properties": {
           "host": {
@@ -956,7 +1039,13 @@
             "type": "string"
           },
           "database": {
-            "type": "string"
+            "type": "string",
+            "description": "数据库名称"
+          },
+          "tableName": {
+            "type": "string",
+            "description": "数据库表名",
+            "example": "tableName"
           }
         },
         "required": [
@@ -964,64 +1053,8 @@
           "port",
           "username",
           "password",
-          "database"
-        ]
-      },
-      "CreateFrom": {
-        "type": "object",
-        "properties": {
-          "connection": {
-            "description": "第三方数据库连接相关配置",
-            "example": {
-              "host": "localhost",
-              "port": 3306,
-              "username": "root",
-              "password": "root",
-              "database": "test"
-            },
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/DatasetCreateConnection"
-              }
-            ]
-          },
-          "driver": {
-            "enum": [
-              "mysql",
-              "pg"
-            ],
-            "type": "string",
-            "description": "第三方数据库驱动类型",
-            "example": "mysql"
-          },
-          "tableOrSubQuery": {
-            "type": "string",
-            "description": "第三方数据库表名或子查询",
-            "example": "(select id, pre_design_lon, pre_design_lat, status from m_shot_point_book) as data"
-          },
-          "uniqueIdField": {
-            "type": "string",
-            "description": "第三方数据库id的字段名",
-            "example": "id"
-          },
-          "lngField": {
-            "type": "string",
-            "description": "第三方数据库经度字段名称",
-            "example": "longitude"
-          },
-          "latField": {
-            "type": "string",
-            "description": "第三方数据库纬度字段名称",
-            "example": "latitude"
-          }
-        },
-        "required": [
-          "connection",
-          "driver",
-          "tableOrSubQuery",
-          "uniqueIdField",
-          "lngField",
-          "latField"
+          "database",
+          "tableName"
         ]
       },
       "SymbolRule": {
@@ -1076,22 +1109,120 @@
           "rules"
         ]
       },
+      "DatasetSourceConnection": {
+        "type": "object",
+        "properties": {
+          "host": {
+            "type": "string"
+          },
+          "port": {
+            "type": "number"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "database": {
+            "type": "string",
+            "description": "数据库名称"
+          }
+        },
+        "required": [
+          "host",
+          "port",
+          "username",
+          "password",
+          "database"
+        ]
+      },
+      "CreateFrom": {
+        "type": "object",
+        "properties": {
+          "connection": {
+            "description": "第三方数据库连接相关配置",
+            "example": {
+              "host": "localhost",
+              "port": 3306,
+              "username": "root",
+              "password": "root",
+              "database": "test"
+            },
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DatasetSourceConnection"
+              }
+            ]
+          },
+          "driver": {
+            "enum": [
+              "mysql",
+              "pg"
+            ],
+            "type": "string",
+            "description": "数据库驱动类型",
+            "example": "mysql"
+          },
+          "tableOrSubQuery": {
+            "type": "string",
+            "description": "数据库表名或子查询",
+            "example": "(select id, pre_design_lon, pre_design_lat, status from m_shot_point_book) as data"
+          },
+          "uniqueIdField": {
+            "type": "string",
+            "description": "数据库id的字段名",
+            "example": "id"
+          },
+          "lngField": {
+            "type": "string",
+            "description": "数据库经度字段名称",
+            "example": "longitude"
+          },
+          "latField": {
+            "type": "string",
+            "description": "数据库纬度字段名称",
+            "example": "latitude"
+          }
+        },
+        "required": [
+          "connection",
+          "driver",
+          "tableOrSubQuery",
+          "uniqueIdField",
+          "lngField",
+          "latField"
+        ]
+      },
       "DatasetCreateInput": {
         "type": "object",
         "properties": {
-          "owner": {
-            "type": "string",
-            "description": "owner",
-            "example": "bigemap"
-          },
           "name": {
             "type": "string",
-            "description": "dataset名称",
-            "example": "dataset"
+            "description": "名称"
           },
           "description": {
             "type": "string",
-            "description": "dataset描述"
+            "description": "描述"
+          },
+          "customDataSourceConnection": {
+            "description": "外部数据库连接配置（只支持pg）",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomDataSourceConnection"
+              }
+            ]
+          },
+          "symbols": {
+            "description": "按照配置的图标和规则渲染",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Symbols"
+              }
+            ]
+          },
+          "id": {
+            "type": "string"
           },
           "createFrom": {
             "description": "导入第三方数据库的相关配置",
@@ -1100,23 +1231,6 @@
                 "$ref": "#/components/schemas/CreateFrom"
               }
             ]
-          },
-          "symbols": {
-            "description": "icon的相关配置",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Symbols"
-              }
-            ]
-          },
-          "bounds": {
-            "type": "array",
-            "items": {
-              "type": "number"
-            }
-          },
-          "features": {
-            "type": "number"
           }
         }
       },
@@ -1143,6 +1257,14 @@
           "description": {
             "type": "string",
             "description": "描述"
+          },
+          "customDataSourceConnection": {
+            "description": "外部数据库连接配置（只支持pg）",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomDataSourceConnection"
+              }
+            ]
           },
           "symbols": {
             "description": "按照配置的图标和规则渲染",
@@ -1182,19 +1304,32 @@
       "DatasetUpdateInput": {
         "type": "object",
         "properties": {
-          "owner": {
-            "type": "string",
-            "description": "owner",
-            "example": "bigemap"
-          },
           "name": {
             "type": "string",
-            "description": "dataset名称",
-            "example": "dataset"
+            "description": "名称"
           },
           "description": {
             "type": "string",
-            "description": "dataset描述"
+            "description": "描述"
+          },
+          "customDataSourceConnection": {
+            "description": "外部数据库连接配置（只支持pg）",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomDataSourceConnection"
+              }
+            ]
+          },
+          "symbols": {
+            "description": "按照配置的图标和规则渲染",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Symbols"
+              }
+            ]
+          },
+          "id": {
+            "type": "string"
           },
           "createFrom": {
             "description": "导入第三方数据库的相关配置",
@@ -1203,25 +1338,31 @@
                 "$ref": "#/components/schemas/CreateFrom"
               }
             ]
-          },
-          "symbols": {
-            "description": "icon的相关配置",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Symbols"
-              }
-            ]
-          },
-          "bounds": {
-            "type": "array",
-            "items": {
-              "type": "number"
-            }
-          },
-          "features": {
-            "type": "number"
           }
         }
+      },
+      "FileUploadInput": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string",
+            "format": "binary"
+          }
+        },
+        "required": [
+          "file"
+        ]
+      },
+      "FileUploadResponse": {
+        "type": "object",
+        "properties": {
+          "filename": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "filename"
+        ]
       },
       "Geometry": {
         "type": "object",
@@ -1321,10 +1462,6 @@
             "type": "object",
             "description": "其他属性",
             "default": "Point"
-          },
-          "thirdPartDataSourcePrimaryKey": {
-            "type": "string",
-            "description": "第三方数据库PrimaryKey"
           }
         },
         "required": [
@@ -1416,6 +1553,11 @@
                 "$ref": "#/components/schemas/PolygonGeometry"
               }
             ]
+          },
+          "filter": {
+            "type": "string",
+            "example": "a > 10 and a < 20 and b = 10",
+            "description": "postgis sql where"
           }
         },
         "required": [

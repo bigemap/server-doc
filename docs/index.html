@@ -26,12 +26,6 @@
           <div class="mt-8 max-w-md">
             <div class="grid grid-cols-1 gap-6">
               <label class="block">
-                <span class="text-gray-700">版本</span>
-                <select class="block w-full mt-1" v-model="selectedVersion">
-                  <option v-for="item in versions">{{ item }}</option>
-                </select>
-              </label>
-              <label class="block">
                 <span class="text-gray-700">ui</span>
                 <select class="block w-full mt-1" v-model="selectedUi">
                   <option v-for="item in ui">{{ item }}</option>
@@ -41,7 +35,21 @@
                 <button
                   @click="handleClick"
                   type="button"
-                  class="block w-full mt-1 pointer-events-auto rounded-md bg-indigo-600 px-3 py-2 text-[0.8125rem] font-semibold leading-5 text-white hover:bg-indigo-500"
+                  class="
+                    block
+                    w-full
+                    mt-1
+                    pointer-events-auto
+                    rounded-md
+                    bg-indigo-600
+                    px-3
+                    py-2
+                    text-[0.8125rem]
+                    font-semibold
+                    leading-5
+                    text-white
+                    hover:bg-indigo-500
+                  "
                 >
                   跳转
                 </button>
@@ -58,15 +66,11 @@
     import metadata from './json-file/metadata.json' assert { type: 'json' }
     createApp({
       setup() {
-        const versions = ['latest', ...metadata.versions]
-        const selectedVersion = ref('latest')
         const selectedUi = ref('swagger')
         const handleClick = ref(() => {
-          window.open(`./${selectedUi.value}.html?version=${selectedVersion.value}`)
+          window.open(`./${selectedUi.value}.html`)
         })
         return {
-          versions: versions,
-          selectedVersion,
           ui: metadata.ui,
           selectedUi,
           handleClick,
