@@ -327,7 +327,7 @@
           }
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "",
             "content": {
               "application/json": {
@@ -337,7 +337,7 @@
               }
             }
           },
-          "201": {
+          "default": {
             "description": "",
             "content": {
               "application/json": {
@@ -378,6 +378,9 @@
         ],
         "responses": {
           "200": {
+            "description": ""
+          },
+          "default": {
             "description": "",
             "content": {
               "application/json": {
@@ -595,6 +598,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dataset"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -628,6 +641,16 @@
         },
         "responses": {
           "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dataset"
+                }
+              }
+            }
+          },
+          "default": {
             "description": "",
             "content": {
               "application/json": {
@@ -685,22 +708,22 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FileUploadResponse"
-                }
-              }
-            }
-          },
           "201": {
             "description": "",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileUploadResponse"
                 }
               }
             }
@@ -738,22 +761,22 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Feature"
-                }
-              }
-            }
-          },
           "201": {
             "description": "",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Feature"
                 }
               }
             }
@@ -801,6 +824,19 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Feature"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
                   "$ref": "#/components/schemas/FeaturePaginatedResult"
                 }
               }
@@ -838,6 +874,16 @@
         ],
         "responses": {
           "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Feature"
+                }
+              }
+            }
+          },
+          "default": {
             "description": "",
             "content": {
               "application/json": {
@@ -930,6 +976,16 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
                   "$ref": "#/components/schemas/Feature"
                 }
               }
@@ -968,7 +1024,7 @@
           }
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "",
             "content": {
               "application/json": {
@@ -981,7 +1037,7 @@
               }
             }
           },
-          "201": {
+          "default": {
             "description": "",
             "content": {
               "application/json": {
