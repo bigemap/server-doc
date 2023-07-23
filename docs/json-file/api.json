@@ -1,299 +1,6 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/api/tileset/{tilesetId}/tilequery/{z}/{lon},{lat}.json": {
-      "get": {
-        "operationId": "TilesetController_queryTile",
-        "summary": "",
-        "description": "",
-        "parameters": [
-          {
-            "name": "lon",
-            "required": true,
-            "in": "path",
-            "description": "经度",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "lat",
-            "required": true,
-            "in": "path",
-            "description": "纬度",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "z",
-            "required": true,
-            "in": "path",
-            "description": "缩放级别",
-            "example": "png",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "tilesetId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "TilesetController"
-        ]
-      }
-    },
-    "/api/tileset/{tilesetId}/wms": {
-      "get": {
-        "operationId": "TilesetController_getTileByWms",
-        "summary": "",
-        "description": "",
-        "parameters": [
-          {
-            "name": "tilesetId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "TilesetController"
-        ]
-      }
-    },
-    "/api/tileset/{tilesetId}/tms/{z}/{x}/{y}{dpi}.{format}": {
-      "get": {
-        "operationId": "TilesetController_getTileByTms",
-        "summary": "",
-        "description": "",
-        "parameters": [
-          {
-            "name": "x",
-            "required": true,
-            "in": "path",
-            "description": "x",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "y",
-            "required": true,
-            "in": "path",
-            "description": "y",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "z",
-            "required": true,
-            "in": "path",
-            "description": "z",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "format",
-            "required": true,
-            "in": "path",
-            "description": "tile 格式",
-            "example": "png",
-            "schema": {
-              "enum": [
-                "pbf",
-                "mvt",
-                "png",
-                "webp",
-                "jpg"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "name": "dpi",
-            "required": false,
-            "in": "path",
-            "example": "@2x",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tilesetId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "TilesetController"
-        ]
-      }
-    },
-    "/api/tileset/{tilesetId}/tile/{z}/{x}/{y}{dpi}.{format}": {
-      "get": {
-        "operationId": "TilesetController_getTile",
-        "summary": "",
-        "description": "",
-        "parameters": [
-          {
-            "name": "x",
-            "required": true,
-            "in": "path",
-            "description": "x",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "y",
-            "required": true,
-            "in": "path",
-            "description": "y",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "z",
-            "required": true,
-            "in": "path",
-            "description": "z",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "format",
-            "required": true,
-            "in": "path",
-            "description": "tile 格式",
-            "example": "png",
-            "schema": {
-              "enum": [
-                "pbf",
-                "mvt",
-                "png",
-                "webp",
-                "jpg"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "name": "dpi",
-            "required": false,
-            "in": "path",
-            "example": "@2x",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tilesetId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "TilesetController"
-        ]
-      }
-    },
-    "/api/tileset": {
-      "post": {
-        "operationId": "TilesetController_create",
-        "summary": "",
-        "description": "",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TilesetCreateOneInputDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "TilesetController"
-        ]
-      }
-    },
-    "/api/tileset/process": {
-      "post": {
-        "operationId": "TilesetController_process",
-        "summary": "",
-        "description": "",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TilesetCreateOneInputDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "TilesetController"
-        ]
-      }
-    },
     "/api/queue/ping": {
       "get": {
         "operationId": "QueueController_ping",
@@ -555,8 +262,18 @@
             "name": "filter",
             "required": false,
             "in": "query",
-            "description": "根据规则过滤图层, 会在symbols的filter规则之上做叠加,规则语法请参考 https://github.com/mapnik/mapnik/wiki/Filter,因为参数是作为query传递的因此需要转码（encodeURIComponent）",
+            "description": "根据规则过滤图层, 会在symbols的filter规则之上做叠加,规则语法请参考 https://github.com/mapnik/mapnik/wiki/Filter, 当使用get请求时请注意转码",
             "example": "[row] &gt;= 16 and [col] &gt;= 10 and [project] &gt;= 14",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "where",
+            "required": false,
+            "in": "query",
+            "description": "数据层面的过滤图层，会生成新的图层,(慎用)，当使用get请求时请注意转码",
+            "example": "postgis sql where",
             "schema": {
               "type": "string"
             }
@@ -564,6 +281,93 @@
         ],
         "responses": {
           "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "DatasetController",
+          "Sinopec"
+        ]
+      },
+      "post": {
+        "operationId": "DatasetController_postGetTilePost",
+        "summary": "tile查询 post接口",
+        "description": "",
+        "parameters": [
+          {
+            "name": "datasetId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x",
+            "required": true,
+            "in": "path",
+            "description": "x",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "y",
+            "required": true,
+            "in": "path",
+            "description": "y",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "z",
+            "required": true,
+            "in": "path",
+            "description": "z",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "format",
+            "required": true,
+            "in": "path",
+            "description": "tile 格式",
+            "example": "png",
+            "schema": {
+              "enum": [
+                "pbf",
+                "mvt",
+                "png",
+                "webp",
+                "jpg"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "dpi",
+            "required": false,
+            "in": "path",
+            "example": "@2x",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TileliveGetTileInputDTOQuery"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
             "description": ""
           }
         },
@@ -669,6 +473,32 @@
       "delete": {
         "operationId": "DatasetController_del",
         "summary": "删除dataset",
+        "description": "",
+        "parameters": [
+          {
+            "name": "datasetId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "DatasetController",
+          "Sinopec"
+        ]
+      }
+    },
+    "/api/dataset/{datasetId}/cache": {
+      "delete": {
+        "operationId": "DatasetController_delCache",
+        "summary": "删除图层的缓存",
         "description": "",
         "parameters": [
           {
@@ -927,7 +757,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/Feature"
                 }
               }
             }
@@ -976,7 +806,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/Feature"
                 }
               }
             }
@@ -1068,51 +898,6 @@
   "servers": [],
   "components": {
     "schemas": {
-      "TilesetCreateOneInputDTO": {
-        "type": "object",
-        "properties": {
-          "filePath": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "filePath"
-        ]
-      },
-      "CustomDataSourceConnection": {
-        "type": "object",
-        "properties": {
-          "host": {
-            "type": "string"
-          },
-          "port": {
-            "type": "number"
-          },
-          "username": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "database": {
-            "type": "string",
-            "description": "数据库名称"
-          },
-          "tableName": {
-            "type": "string",
-            "description": "数据库表名",
-            "example": "tableName"
-          }
-        },
-        "required": [
-          "host",
-          "port",
-          "username",
-          "password",
-          "database",
-          "tableName"
-        ]
-      },
       "SymbolRule": {
         "type": "object",
         "properties": {
@@ -1165,7 +950,7 @@
           "rules"
         ]
       },
-      "DatasetSourceConnection": {
+      "DataSourceConnection": {
         "type": "object",
         "properties": {
           "host": {
@@ -1207,7 +992,7 @@
             },
             "allOf": [
               {
-                "$ref": "#/components/schemas/DatasetSourceConnection"
+                "$ref": "#/components/schemas/DataSourceConnection"
               }
             ]
           },
@@ -1250,6 +1035,36 @@
           "latField"
         ]
       },
+      "CustomDataSource": {
+        "type": "object",
+        "properties": {
+          "connection": {
+            "description": "自定义数据源连接配置（目前只支持postgis）",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DataSourceConnection"
+              }
+            ]
+          },
+          "tableName": {
+            "type": "string",
+            "description": "创建图层所需的postgis数据表名称,不填时服务器会自动生成一个postgis数据表"
+          },
+          "lngField": {
+            "type": "string",
+            "description": "数据库经度字段名称（根据此字段生成空间数据列）",
+            "example": "longitude"
+          },
+          "latField": {
+            "type": "string",
+            "description": "数据库纬度字段名称 （根据此字段生成空间数据列）",
+            "example": "latitude"
+          }
+        },
+        "required": [
+          "tableName"
+        ]
+      },
       "DatasetCreateInput": {
         "type": "object",
         "properties": {
@@ -1260,14 +1075,6 @@
           "description": {
             "type": "string",
             "description": "描述"
-          },
-          "customDataSourceConnection": {
-            "description": "外部数据库连接配置（只支持pg）",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CustomDataSourceConnection"
-              }
-            ]
           },
           "symbols": {
             "description": "按照配置的图标和规则渲染",
@@ -1287,8 +1094,36 @@
                 "$ref": "#/components/schemas/CreateFrom"
               }
             ]
+          },
+          "customDataSource": {
+            "description": "自定义数据连接",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomDataSource"
+              }
+            ]
           }
         }
+      },
+      "DataSource": {
+        "type": "object",
+        "properties": {
+          "connection": {
+            "description": "自定义数据源连接配置（目前只支持postgis）",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DataSourceConnection"
+              }
+            ]
+          },
+          "tableName": {
+            "type": "string",
+            "description": "dataset关联的表名称"
+          }
+        },
+        "required": [
+          "tableName"
+        ]
       },
       "Dataset": {
         "type": "object",
@@ -1314,11 +1149,11 @@
             "type": "string",
             "description": "描述"
           },
-          "customDataSourceConnection": {
-            "description": "外部数据库连接配置（只支持pg）",
+          "dataSource": {
+            "description": "数据源",
             "allOf": [
               {
-                "$ref": "#/components/schemas/CustomDataSourceConnection"
+                "$ref": "#/components/schemas/DataSource"
               }
             ]
           },
@@ -1334,8 +1169,24 @@
         "required": [
           "id",
           "createdAt",
-          "updatedAt"
+          "updatedAt",
+          "dataSource"
         ]
+      },
+      "TileliveGetTileInputDTOQuery": {
+        "type": "object",
+        "properties": {
+          "filter": {
+            "type": "string",
+            "description": "根据规则过滤图层, 会在symbols的filter规则之上做叠加,规则语法请参考 https://github.com/mapnik/mapnik/wiki/Filter, 当使用get请求时请注意转码",
+            "example": "[row] &gt;= 16 and [col] &gt;= 10 and [project] &gt;= 14"
+          },
+          "where": {
+            "type": "string",
+            "description": "数据层面的过滤图层，会生成新的图层,(慎用)，当使用get请求时请注意转码",
+            "example": "postgis sql where"
+          }
+        }
       },
       "DatasetPaginatedResult": {
         "type": "object",
@@ -1368,30 +1219,11 @@
             "type": "string",
             "description": "描述"
           },
-          "customDataSourceConnection": {
-            "description": "外部数据库连接配置（只支持pg）",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CustomDataSourceConnection"
-              }
-            ]
-          },
           "symbols": {
             "description": "按照配置的图标和规则渲染",
             "allOf": [
               {
                 "$ref": "#/components/schemas/Symbols"
-              }
-            ]
-          },
-          "id": {
-            "type": "string"
-          },
-          "createFrom": {
-            "description": "导入第三方数据库的相关配置",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CreateFrom"
               }
             ]
           }
@@ -1457,12 +1289,11 @@
             "enum": [
               "Feature"
             ],
-            "description": "ElementType,",
+            "description": "ElementType",
             "default": "Feature"
           },
-          "geometry": {
+          "geojson": {
             "description": "GeometryType,符合GEOJSON定义的Geometry Object, https://datatracker.ietf.org/doc/html/rfc7946#section-3.1",
-            "default": "Point",
             "allOf": [
               {
                 "$ref": "#/components/schemas/Geometry"
@@ -1477,7 +1308,7 @@
         },
         "required": [
           "type",
-          "geometry",
+          "geojson",
           "properties"
         ]
       },
@@ -1502,12 +1333,11 @@
             "enum": [
               "Feature"
             ],
-            "description": "ElementType,",
+            "description": "ElementType",
             "default": "Feature"
           },
-          "geometry": {
+          "geojson": {
             "description": "GeometryType,符合GEOJSON定义的Geometry Object, https://datatracker.ietf.org/doc/html/rfc7946#section-3.1",
-            "default": "Point",
             "allOf": [
               {
                 "$ref": "#/components/schemas/Geometry"
@@ -1525,7 +1355,7 @@
           "createdAt",
           "updatedAt",
           "type",
-          "geometry",
+          "geojson",
           "properties"
         ]
       },
@@ -1610,7 +1440,7 @@
               }
             ]
           },
-          "filter": {
+          "where": {
             "type": "string",
             "example": "a > 10 and a < 20 and b = 10",
             "description": "postgis sql where"
@@ -1628,12 +1458,11 @@
             "enum": [
               "Feature"
             ],
-            "description": "ElementType,",
+            "description": "ElementType",
             "default": "Feature"
           },
-          "geometry": {
+          "geojson": {
             "description": "GeometryType,符合GEOJSON定义的Geometry Object, https://datatracker.ietf.org/doc/html/rfc7946#section-3.1",
-            "default": "Point",
             "allOf": [
               {
                 "$ref": "#/components/schemas/Geometry"
