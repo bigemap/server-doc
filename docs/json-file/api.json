@@ -183,6 +183,16 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "default": {
+            "description": "GeoJSON FeatureCollection with Point features, 文档: https://datatracker.ietf.org/doc/html/rfc7946#section-1.5",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -263,7 +273,7 @@
             "required": false,
             "in": "query",
             "description": "动态查询条件，格式为pg sql where",
-            "example": "postgis sql where",
+            "example": "aField > 10 and aField < 20 and bField = 10",
             "schema": {
               "type": "string"
             }
@@ -271,93 +281,6 @@
         ],
         "responses": {
           "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "DatasetController",
-          "Sinopec"
-        ]
-      },
-      "post": {
-        "operationId": "DatasetController_postGetTilePost",
-        "summary": "tile查询 post接口",
-        "description": "",
-        "parameters": [
-          {
-            "name": "datasetId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x",
-            "required": true,
-            "in": "path",
-            "description": "x",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "y",
-            "required": true,
-            "in": "path",
-            "description": "y",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "z",
-            "required": true,
-            "in": "path",
-            "description": "z",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "format",
-            "required": true,
-            "in": "path",
-            "description": "tile 格式",
-            "example": "png",
-            "schema": {
-              "enum": [
-                "pbf",
-                "mvt",
-                "png",
-                "webp",
-                "jpg"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "name": "dpi",
-            "required": false,
-            "in": "path",
-            "example": "@2x",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TileliveGetTileInputDTOQuery"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
             "description": ""
           }
         },
@@ -1139,16 +1062,6 @@
           "dataSource"
         ]
       },
-      "TileliveGetTileInputDTOQuery": {
-        "type": "object",
-        "properties": {
-          "where": {
-            "type": "string",
-            "description": "动态查询条件，格式为pg sql where",
-            "example": "postgis sql where"
-          }
-        }
-      },
       "DatasetPaginatedResult": {
         "type": "object",
         "properties": {
@@ -1403,8 +1316,8 @@
           },
           "where": {
             "type": "string",
-            "example": "a > 10 and a < 20 and b = 10",
-            "description": "postgis sql where"
+            "description": "动态查询条件，格式为pg sql where",
+            "example": "aField > 10 and aField < 20 and bField = 10"
           }
         },
         "required": [
