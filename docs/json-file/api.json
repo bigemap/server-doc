@@ -259,20 +259,10 @@
             }
           },
           {
-            "name": "filter",
-            "required": false,
-            "in": "query",
-            "description": "根据规则过滤图层, 会在symbols的filter规则之上做叠加,规则语法请参考 https://github.com/mapnik/mapnik/wiki/Filter, 当使用get请求时请注意转码",
-            "example": "[row] &gt;= 16 and [col] &gt;= 10 and [project] &gt;= 14",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "where",
             "required": false,
             "in": "query",
-            "description": "数据层面的过滤图层，会生成新的图层,(慎用)，当使用get请求时请注意转码",
+            "description": "动态查询条件，格式为pg sql where",
             "example": "postgis sql where",
             "schema": {
               "type": "string"
@@ -1038,14 +1028,6 @@
       "CustomDataSource": {
         "type": "object",
         "properties": {
-          "connection": {
-            "description": "自定义数据源连接配置（目前只支持postgis）",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/DataSourceConnection"
-              }
-            ]
-          },
           "tableName": {
             "type": "string",
             "description": "创建图层所需的postgis数据表名称,不填时服务器会自动生成一个postgis数据表"
@@ -1107,23 +1089,7 @@
       },
       "DataSource": {
         "type": "object",
-        "properties": {
-          "connection": {
-            "description": "自定义数据源连接配置（目前只支持postgis）",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/DataSourceConnection"
-              }
-            ]
-          },
-          "tableName": {
-            "type": "string",
-            "description": "dataset关联的表名称"
-          }
-        },
-        "required": [
-          "tableName"
-        ]
+        "properties": {}
       },
       "Dataset": {
         "type": "object",
@@ -1176,14 +1142,9 @@
       "TileliveGetTileInputDTOQuery": {
         "type": "object",
         "properties": {
-          "filter": {
-            "type": "string",
-            "description": "根据规则过滤图层, 会在symbols的filter规则之上做叠加,规则语法请参考 https://github.com/mapnik/mapnik/wiki/Filter, 当使用get请求时请注意转码",
-            "example": "[row] &gt;= 16 and [col] &gt;= 10 and [project] &gt;= 14"
-          },
           "where": {
             "type": "string",
-            "description": "数据层面的过滤图层，会生成新的图层,(慎用)，当使用get请求时请注意转码",
+            "description": "动态查询条件，格式为pg sql where",
             "example": "postgis sql where"
           }
         }
