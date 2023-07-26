@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/api/tilelive/{datasetId}/tilequery/{z}/{lon},{lat}.json": {
+    "/api/tilelive/{datasetId}/tilequery/{z}/{lon}/{lat}": {
       "get": {
         "operationId": "TileliveController_queryTile",
         "summary": "tilequery查询",
