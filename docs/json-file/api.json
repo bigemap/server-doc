@@ -707,6 +707,21 @@
           "database"
         ]
       },
+      "ExtraField": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "field",
+          "type"
+        ]
+      },
       "CreateFrom": {
         "type": "object",
         "properties": {
@@ -753,6 +768,13 @@
             "type": "string",
             "description": "数据库纬度字段名称",
             "example": "latitude"
+          },
+          "extraFields": {
+            "description": "其他字段",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExtraField"
+            }
           }
         },
         "required": [
