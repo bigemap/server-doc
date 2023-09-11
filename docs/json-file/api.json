@@ -632,11 +632,15 @@
         "properties": {
           "minZoom": {
             "type": "number",
-            "description": "缩放级别范围"
+            "description": "缩放级别范围",
+            "minimum": 0,
+            "maximum": 25
           },
           "maxZoom": {
             "type": "number",
-            "description": "缩放级别范围"
+            "description": "缩放级别范围",
+            "minimum": 0,
+            "maximum": 25
           },
           "scale": {
             "type": "number",
