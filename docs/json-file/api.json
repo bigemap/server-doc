@@ -627,6 +627,26 @@
   "servers": [],
   "components": {
     "schemas": {
+      "TransformRule": {
+        "type": "object",
+        "properties": {
+          "minZoom": {
+            "type": "number",
+            "description": "缩放级别范围"
+          },
+          "maxZoom": {
+            "type": "number",
+            "description": "缩放级别范围"
+          },
+          "scale": {
+            "type": "number",
+            "description": "图标缩放比例"
+          }
+        },
+        "required": [
+          "scale"
+        ]
+      },
       "SymbolRule": {
         "type": "object",
         "properties": {
@@ -652,6 +672,33 @@
             "description": "默认icon的url(相对路径)",
             "example": "/path/to/file"
           },
+          "transform": {
+            "description": "根据地图缩放级别缩放图标的大小",
+            "example": [
+              {
+                "maxZoom": 10,
+                "scale": 0.1
+              },
+              {
+                "minZoom": 11,
+                "maxZoom": 14,
+                "scale": 0.5
+              },
+              {
+                "minZoom": 15,
+                "maxZoom": 18,
+                "scale": 2
+              },
+              {
+                "minZoom": 19,
+                "scale": 5
+              }
+            ],
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransformRule"
+            }
+          },
           "rules": {
             "description": "按规则展示icon(支持正则)",
             "example": [
@@ -676,6 +723,7 @@
         },
         "required": [
           "defaultIcon",
+          "transform",
           "rules"
         ]
       },
