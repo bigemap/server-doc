@@ -841,6 +841,14 @@
       "CustomDataSource": {
         "type": "object",
         "properties": {
+          "connection": {
+            "description": "自定义数据源连接配置（只支持postgis）",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DataSourceConnection"
+              }
+            ]
+          },
           "tableName": {
             "type": "string",
             "description": "创建图层所需的postgis数据表名称,不填时服务器会自动生成一个postgis数据表"
@@ -902,7 +910,16 @@
       },
       "DataSource": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "connection": {
+            "description": "自定义数据源连接配置（只支持postgis）",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DataSourceConnection"
+              }
+            ]
+          }
+        }
       },
       "Dataset": {
         "type": "object",
